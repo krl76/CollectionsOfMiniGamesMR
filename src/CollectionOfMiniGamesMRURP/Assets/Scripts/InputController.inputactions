@@ -1,0 +1,54 @@
+{
+    "name": "InputController",
+    "maps": [
+        {
+            "name": "Interaction",
+            "id": "88b1ad0a-64c0-43cf-8359-e179c31b8e09",
+            "actions": [
+                {
+                    "name": "ReloadSpace",
+                    "type": "Button",
+                    "id": "484bbbe9-2600-45e1-99ca-eb7d54c1f052",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ReturnUI",
+                    "type": "Button",
+                    "id": "6b59380a-868d-4233-9f1b-4e40f184a306",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1f114047-ca73-4165-9cf9-1b04ed452b61",
+                    "path": "<XRController>{LeftHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReloadSpace",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "df86e2a1-b128-4536-8047-ea418e057447",
+                    "path": "<XRController>{LeftHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReturnUI",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
