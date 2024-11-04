@@ -22,6 +22,13 @@ public class ReloadSpace : MonoBehaviour
         };
     }
 
+    public void RequestSpaceMesh()
+    {
+        Destroy(_sceneMesh);
+        Invoke(nameof(SpawnSceneMesh), 10f);
+        _ = OVRScene.RequestSpaceSetup();
+    }
+
     private void SpawnSceneMesh()
     {
         _sceneMesh = Instantiate(_sceneMeshBlock);

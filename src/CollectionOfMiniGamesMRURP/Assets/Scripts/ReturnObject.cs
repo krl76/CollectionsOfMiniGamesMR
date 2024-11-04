@@ -29,6 +29,11 @@ public class ReturnObject : MonoBehaviour
         _inputController.Disable();
     }
 
+    public void CanvasInFrontOfCamera()
+    {
+        StartCoroutine(SnapCanvasInFrontOfCamera());
+    }
+
     private void Start()
     {
         StartCoroutine(SnapCanvasInFrontOfCamera());
