@@ -926,6 +926,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 323cb65d2594c79499a11a99ff0fb347, type: 3}
+--- !u!1 &2585894214191204448 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4171210596153234762, guid: 323cb65d2594c79499a11a99ff0fb347,
+    type: 3}
+  m_PrefabInstance: {fileID: 1874039476915133738}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2585894214191204449 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4171210596153234763, guid: 323cb65d2594c79499a11a99ff0fb347,
@@ -1407,6 +1413,7 @@ MonoBehaviour:
   - {fileID: 8039857943605415311}
   _animator: {fileID: 6394478987412749765}
   _rockAnimationObject: {fileID: 4896089972562275229}
+  _startButton: {fileID: 2585894214191204448}
   _score: {fileID: 8010297888756563864}
   _result: {fileID: 7984482743904537310}
   _choice: {fileID: 184366087513607236}

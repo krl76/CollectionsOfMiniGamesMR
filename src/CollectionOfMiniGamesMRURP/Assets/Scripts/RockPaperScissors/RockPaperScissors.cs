@@ -14,6 +14,7 @@ public class RockPaperScissors : MonoBehaviour
     [SerializeField] private GameObject _rockAnimationObject;
 
     [Header("Game")] 
+    [SerializeField] private GameObject _startButton;
     [SerializeField] private TextMeshPro _score;
     [SerializeField] private TextMeshPro _result;
     [SerializeField] private TextMeshPro _choice;
@@ -42,16 +43,16 @@ public class RockPaperScissors : MonoBehaviour
         {
             _aiPickObject.SetActive(false);
         }
-        catch 
-        { 
-            //ignored
+        finally
+        {
+            FindAnyObjectByType<PlayerPick>()._isPick = false;
+            _isStart = true;
+            _result.gameObject.SetActive(false);
+            _choice.gameObject.SetActive(true);
+            _rockAnimationObject.SetActive(true);
+            _animator.SetBool("StartGame", true);
+            _startButton.SetActive(false);
         }
-        FindAnyObjectByType<PlayerPick>()._isPick = false;
-        _isStart = true;
-        _result.gameObject.SetActive(false);
-        _choice.gameObject.SetActive(true);
-        _rockAnimationObject.SetActive(true);
-        _animator.SetBool("StartGame", true);
     }
 
     private void Update()
@@ -110,6 +111,7 @@ public class RockPaperScissors : MonoBehaviour
                 }
             }
             _isStart = false;
+            _startButton.SetActive(true);
         }
     }
 
