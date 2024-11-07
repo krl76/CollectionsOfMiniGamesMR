@@ -12,6 +12,9 @@ TagManager:
   - Rock
   - Paper
   - Scissors
+  - Floor
+  - SpawnBottles
+  - Bottle
   layers:
   - Default
   - TransparentFX

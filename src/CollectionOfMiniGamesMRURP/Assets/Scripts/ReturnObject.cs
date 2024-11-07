@@ -39,7 +39,7 @@ public class ReturnObject : MonoBehaviour
         StartCoroutine(SnapCanvasInFrontOfCamera());
     }
 
-    private IEnumerator SnapCanvasInFrontOfCamera()
+    public IEnumerator SnapCanvasInFrontOfCamera()
     {
         yield return new WaitUntil(
             () => _cameraRig && _cameraRig.centerEyeAnchor.transform.position != Vector3.zero);

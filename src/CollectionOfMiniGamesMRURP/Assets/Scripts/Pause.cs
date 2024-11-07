@@ -16,6 +16,11 @@ public class Pause : MonoBehaviour
         _isOpen = false;
     }
 
+    private void OnEnable()
+    {
+        GetComponent<ReturnObject>().StartCoroutine(GetComponent<ReturnObject>().SnapCanvasInFrontOfCamera());
+    }
+
     public void ActivateMenu()
     {
         if (!_isOpen)
