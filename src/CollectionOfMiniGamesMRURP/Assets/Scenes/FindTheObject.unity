@@ -1996,6 +1996,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnFloorCollider
       objectReference: {fileID: 0}
+    - target: {fileID: 341790538290875720, guid: 71ec1995f11bcd741bd20df7b66af112,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 908086212921415115, guid: 71ec1995f11bcd741bd20df7b66af112,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4575,15 +4580,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7000910047455186949, guid: b748ad86be084894399355fc34804825,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 564853835461948090, guid: b748ad86be084894399355fc34804825,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b748ad86be084894399355fc34804825, type: 3}
 --- !u!1001 &2382130223755816483
 PrefabInstance:
