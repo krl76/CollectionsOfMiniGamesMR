@@ -8,6 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/FindTheObject.unity
+    guid: 10afd449e8023e84ba30242f237ca514
+  - enabled: 1
+    path: Assets/Scenes/RockPaperScissors.unity
+    guid: cd924d33a56b8894abe321b5b6109f5a
+  - enabled: 1
+    path: Assets/Scenes/Darts.unity
+    guid: 1526b24ec1e582241b735b482fc54add
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 89cf2f069ec5bde4eb5ce5ddc05dfa0a,
       type: 2}
