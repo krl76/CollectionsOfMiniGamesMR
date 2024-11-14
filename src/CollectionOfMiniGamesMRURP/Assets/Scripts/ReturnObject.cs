@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ReturnObject : MonoBehaviour
@@ -45,5 +43,7 @@ public class ReturnObject : MonoBehaviour
             () => _cameraRig && _cameraRig.centerEyeAnchor.transform.position != Vector3.zero);
         transform.position = _cameraRig.centerEyeAnchor.transform.position +
                              _cameraRig.centerEyeAnchor.transform.forward * _spawnDistanceFromCamera;
+        
+        transform.LookAt(new Vector3(_cameraRig.centerEyeAnchor.transform.position.x, transform.position.y, _cameraRig.centerEyeAnchor.transform.position.z ));
     }
 }

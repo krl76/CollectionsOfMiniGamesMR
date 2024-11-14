@@ -22,7 +22,7 @@ public class PutInBox : MonoBehaviour
 
    private void Awake()
    {
-        FindAnyObjectByType<FindSpawnPositions>().enabled = true; ;
+      FindObjectOfType<BottlesSpawn>().ActivateSpawn();
 
       _score.text = $"0/{_spawnPoints.Count}";
       if(seconds < 10) _timer.text = $"Estimate time: {minutes}:0{seconds}";

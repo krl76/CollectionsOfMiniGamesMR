@@ -15,6 +15,10 @@ TagManager:
   - Floor
   - SpawnBottles
   - Bottle
+  - GreenAxis
+  - BlueAxis
+  - RedAxis
+  - Arrow
   layers:
   - Default
   - TransparentFX
