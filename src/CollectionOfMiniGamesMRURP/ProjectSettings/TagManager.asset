@@ -19,6 +19,7 @@ TagManager:
   - BlueAxis
   - RedAxis
   - Arrow
+  - DartsBoard
   layers:
   - Default
   - TransparentFX
