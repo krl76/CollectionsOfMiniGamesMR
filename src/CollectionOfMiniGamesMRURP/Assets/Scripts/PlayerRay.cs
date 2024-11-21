@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Meta.XR.MRUtilityKit;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerRay : MonoBehaviour
 {
@@ -19,7 +16,7 @@ public class PlayerRay : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            if (hit.collider.gameObject.CompareTag("Floor"))
+            if (hit.collider.gameObject.CompareTag("Floor") || SceneManager.GetActiveScene().name == "Darts")
             {
                 _pointer.SetActive(true);
                 _pointer.transform.position = hit.point;
