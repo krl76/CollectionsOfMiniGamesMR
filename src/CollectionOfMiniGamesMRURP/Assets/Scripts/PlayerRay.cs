@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,23 +8,32 @@ public class PlayerRay : MonoBehaviour
     [SerializeField] private GameObject _pointer;
 
     public Ray ray;
-    
+
+    private bool _off;
+
     private void LateUpdate()
     {
-        ray = new Ray(transform.position, transform.forward);
-        Debug.DrawRay(transform.position, transform.forward, Color.red);
-
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (FindObjectOfType<SpawnObjects>()._isSpawn)
         {
-            if (hit.collider.gameObject.CompareTag("Floor") || SceneManager.GetActiveScene().name == "Darts")
+            _off = true;
+        }
+        else
+        {
+            ray = new Ray(transform.position, transform.forward);
+            Debug.DrawRay(transform.position, transform.forward, Color.red);
+
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
             {
-                _pointer.SetActive(true);
-                _pointer.transform.position = hit.point;
-            }
-            else
-            {
-                _pointer.SetActive(false);
+                if (hit.collider.gameObject.CompareTag("Floor") || (SceneManager.GetActiveScene().name == "Darts" && !hit.collider.CompareTag("Hands")))
+                {
+                    _pointer.SetActive(true);
+                    _pointer.transform.position = hit.point;
+                }
+                else
+                {
+                    _pointer.SetActive(false);
+                }
             }
         }
     }

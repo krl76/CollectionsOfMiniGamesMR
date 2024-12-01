@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RotateObject : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class RotateObject : MonoBehaviour
 
     private void Update()
     {
-        if(_selected) FindObjectOfType<MainObject>().transform.eulerAngles += new Vector3(0, 5f, 0);
+        if(_selected && SceneManager.GetActiveScene().name == "Darts") FindObjectOfType<MainObject>().transform.eulerAngles += new Vector3(2f, 0, 0);
+        else if(_selected) FindObjectOfType<MainObject>().transform.eulerAngles += new Vector3(0, 5f, 0);
     }
 }
