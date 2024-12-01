@@ -1,28 +1,25 @@
+using System;
 using UnityEngine;
 
 public class RotateObject : MonoBehaviour
 {
-    public void RotateOneWay()
+
+    private bool _selected;
+    
+    public void SelectRotate(bool select)
     {
         try
         {
             if (FindObjectOfType<ActivateAxis>()._isActivated)
             {
-                FindObjectOfType<MainObject>().transform.eulerAngles += new Vector3(0, 10f, 0);
+                _selected = select;
             }
         }
         catch{}
     }
-    
-    public void RotateSecondWay()
+
+    private void Update()
     {
-        try
-        {
-            if (FindObjectOfType<ActivateAxis>()._isActivated)
-            {
-                FindObjectOfType<MainObject>().transform.eulerAngles -= new Vector3(0, 10f, 0);
-            }
-        }
-        catch{}
+        if(_selected) FindObjectOfType<MainObject>().transform.eulerAngles += new Vector3(0, 5f, 0);
     }
 }

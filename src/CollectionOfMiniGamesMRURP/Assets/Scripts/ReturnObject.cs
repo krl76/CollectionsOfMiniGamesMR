@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ReturnObject : MonoBehaviour
 {
-    private float _spawnDistanceFromCamera = 0.75f;
+    private float _spawnDistanceFromCamera = 0.5f;
     private OVRCameraRig _cameraRig;
     
     private InputController _inputController;
@@ -44,6 +44,5 @@ public class ReturnObject : MonoBehaviour
         transform.position = _cameraRig.centerEyeAnchor.transform.position +
                              _cameraRig.centerEyeAnchor.transform.forward * _spawnDistanceFromCamera;
         
-        transform.LookAt(new Vector3(_cameraRig.centerEyeAnchor.transform.position.x, transform.position.y, _cameraRig.centerEyeAnchor.transform.position.z ));
     }
 }

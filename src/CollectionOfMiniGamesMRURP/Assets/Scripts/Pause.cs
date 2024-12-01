@@ -23,13 +23,13 @@ public class Pause : MonoBehaviour
         if (!_isOpen)
         {
             _menu.SetActive(true);
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
             _isOpen = true;
         }
         else
         {
             _menu.SetActive(false);
-            Time.timeScale = 1;
+            //Time.timeScale = 1;
             _isOpen = false;
         }
     }
