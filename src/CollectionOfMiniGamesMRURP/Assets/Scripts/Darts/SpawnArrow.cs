@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -8,16 +9,26 @@ public class SpawnArrow : MonoBehaviour
     [SerializeField] private GameObject _drotik;
 
     private GameObject _spawned;
+
+    private SpawnObjects _spawnObjects;
     
+    private void Start()
+    {
+        _spawnObjects = GetComponent<SpawnObjects>();
+    }
+
     public void SpawnDrotik()
     {
-        try
+        if (_spawnObjects._isSpawn)
         {
-            Destroy(_spawned);
-        }
-        catch{}
+            try
+            {
+                Destroy(_spawned);
+            }
+            catch{}
         
-        _spawned = Instantiate(_drotik, FindObjectOfType<PlayerRay>().transform.position, quaternion.identity);
+            _spawned = Instantiate(_drotik, FindObjectOfType<PlayerRay>().transform.position, quaternion.identity);
+        }
     }
     
 }
