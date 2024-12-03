@@ -5243,6 +5243,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3484022595991432559, guid: 395e9de6884c5974aa037d5aad932194,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3484022595991432559, guid: 395e9de6884c5974aa037d5aad932194,
+        type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3894217577744172025, guid: 395e9de6884c5974aa037d5aad932194,
         type: 3}
       propertyPath: _pointer

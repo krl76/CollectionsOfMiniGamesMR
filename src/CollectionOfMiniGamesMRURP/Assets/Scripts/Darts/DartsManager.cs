@@ -1,12 +1,11 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class DartsManager : MonoBehaviour
 {
     [SerializeField] private TextMeshPro _scoreTable;
+    [SerializeField] private Transform _dartboardCenter;
     
     public int _score;
     public bool _isPing;
@@ -15,13 +14,10 @@ public class DartsManager : MonoBehaviour
     private bool x2;
     private bool x3;
 
-    private void Start()
-    {
-        _arrow = FindAnyObjectByType<Arrow>();
-    }
-
     private void OnCollisionEnter(Collision other)
     {
+        _arrow = other.gameObject.GetComponent<Arrow>();
+        
         Debug.Log("Enter");
         
         if (other.gameObject.CompareTag("Arrow"))
@@ -33,7 +29,7 @@ public class DartsManager : MonoBehaviour
             
             OffArrowGravity();
             Vector3 hitPoint = other.contacts[0].point;
-            Vector3 dartboardCenter = transform.position;
+            Vector3 dartboardCenter = _dartboardCenter.position;
     
             float distance = Vector3.Distance(hitPoint, dartboardCenter);
     

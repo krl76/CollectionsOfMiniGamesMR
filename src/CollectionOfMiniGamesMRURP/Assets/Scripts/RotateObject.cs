@@ -21,7 +21,7 @@ public class RotateObject : MonoBehaviour
 
     private void Update()
     {
-        if(_selected && SceneManager.GetActiveScene().name == "Darts") FindObjectOfType<MainObject>().transform.eulerAngles += new Vector3(2f, 0, 0);
+        if(_selected && SceneManager.GetActiveScene().name == "Darts") FindObjectOfType<MainObject>().transform.eulerAngles += new Vector3(0, 5f, 0);
         else if(_selected) FindObjectOfType<MainObject>().transform.eulerAngles += new Vector3(0, 5f, 0);
     }
 }

@@ -25,7 +25,7 @@ public class PlayerRay : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.gameObject.CompareTag("Floor") || (SceneManager.GetActiveScene().name == "Darts" && !hit.collider.CompareTag("Hands")))
+                if (hit.collider.gameObject.CompareTag("Floor"))
                 {
                     _pointer.SetActive(true);
                     _pointer.transform.position = hit.point;

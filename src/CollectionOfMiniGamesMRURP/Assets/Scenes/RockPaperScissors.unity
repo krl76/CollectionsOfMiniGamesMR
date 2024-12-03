@@ -415,6 +415,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prefab: {fileID: 8076651641513107664, guid: 74dfed594835838489f90abac28f5e76, type: 3}
   _pointer: {fileID: 1464417947}
+  _isSpawn: 0
 --- !u!4 &200771343
 Transform:
   m_ObjectHideFlags: 0
@@ -3267,6 +3268,11 @@ PrefabInstance:
       propertyPath: _pointer
       value: 
       objectReference: {fileID: 1464417947}
+    - target: {fileID: 3484022595991432559, guid: 395e9de6884c5974aa037d5aad932194,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3894217577744172025, guid: 395e9de6884c5974aa037d5aad932194,
         type: 3}
       propertyPath: _pointer

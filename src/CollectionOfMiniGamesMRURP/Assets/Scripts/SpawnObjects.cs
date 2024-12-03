@@ -19,13 +19,14 @@ public class SpawnObjects : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().name == "Darts")
             {
-                Instantiate(_prefab, _pointer.transform.position, _prefab.transform.rotation);
+                Instantiate(_prefab, new Vector3(_pointer.transform.position.x, _pointer.transform.position.y + 1f, _pointer.transform.position.z), _prefab.transform.rotation);
             }
             else
             {
                 Instantiate(_prefab, _pointer.transform.position, Quaternion.identity);
             }
             
+            _pointer.SetActive(false);
             _isSpawn = true;
         }
     }
