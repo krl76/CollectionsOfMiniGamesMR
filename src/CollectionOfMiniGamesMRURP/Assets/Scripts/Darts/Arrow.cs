@@ -11,10 +11,15 @@ public class Arrow : MonoBehaviour
     
     private Rigidbody _rb;
     private HandGrabInteractable grabInteractable;
+    
+    private Vector3 _prevPos;
+    private float _speed;
+    public bool _throw;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _prevPos = transform.position;
 
         //_rb.centerOfMass = _centerOfMass.position;
         
@@ -26,16 +31,39 @@ public class Arrow : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        Vector3 displacement = transform.position - _prevPos;
+        _speed = displacement.magnitude / Time.deltaTime;
+        _prevPos = transform.position;
+        
+        if(_speed > 4) Debug.LogError($"Drotik speed: {_speed}");
+    }
+
     private void OnStateChanged(InteractableStateChangeArgs args)
     {
-        Debug.LogError(args.PreviousState);
-        Debug.LogError((int)args.PreviousState);
+        Debug.LogError($"{args.NewState}.");
+
+        if (_throw)
+        {
+            return;
+        }
+        if (args.NewState != InteractableState.Select && _speed >= 4.3f)
+        {
+            _throw = true;
+            _rb.isKinematic = false;
+            _rb.AddForce(_direction.forward * _throwForce, ForceMode.Impulse);
+        }
+        else if (args.NewState != InteractableState.Select && _speed < 4.3f && !_throw)
+        {
+            _rb.isKinematic = true;
+        }
         
-        if ((int)args.PreviousState == (int)InteractorState.Select)
+        /*if ((int)args.PreviousState == (int)InteractorState.Select)
         {
             _rb.AddForce(_direction.forward * _throwForce, ForceMode.Impulse);
             Debug.LogError($"Object released at time: {Time.time}");
-        }
+        }*/
     }
 
     private void OnDestroy()

@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8757574090693554197}
+  - component: {fileID: 8179225269250416398}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,12 +26,33 @@ Transform:
   m_GameObject: {fileID: 2045617043758772167}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.839, y: 0, z: 0.471}
+  m_LocalPosition: {x: -3.2907, y: -0.0141, z: 1.9042}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2499237073387028046}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &8179225269250416398
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045617043758772167}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.06
+  m_Center: {x: 0.45036578, y: 0, z: 0}
 --- !u!1 &2653859574093824133
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,7 +378,7 @@ Transform:
   m_GameObject: {fileID: 5912455538045953400}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.837, y: -0, z: 1.9066}
+  m_LocalPosition: {x: -2.837, y: -0.017, z: 1.907}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -373,12 +395,11 @@ GameObject:
   - component: {fileID: 6026798943709252524}
   - component: {fileID: 3545510625714275199}
   - component: {fileID: 6454813015482174088}
-  - component: {fileID: 2287654209701740689}
   - component: {fileID: 7138121951660655803}
   - component: {fileID: 4907621892761900889}
   m_Layer: 0
   m_Name: arrow
-  m_TagString: Untagged
+  m_TagString: Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -392,7 +413,7 @@ Transform:
   m_GameObject: {fileID: 7295003623541443796}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -2.839599, y: 0, z: 0}
+  m_LocalPosition: {x: -2.84, y: -0.017, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -448,27 +469,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &2287654209701740689
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7295003623541443796}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.05
-  m_Center: {x: 0, y: -1.875, z: 0}
 --- !u!64 &7138121951660655803
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -508,7 +508,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.3838871, y: 2.6368368, z: 0.42443094}
   m_Center: {x: 0.0113657415, y: -0.3616713, z: 0.022621064}
@@ -527,7 +527,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7926701063568469459
 Transform:
   m_ObjectHideFlags: 0
@@ -738,7 +738,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -757,6 +757,7 @@ MonoBehaviour:
   _centerOfMass: {fileID: 7926701063568469459}
   _throwForce: 3
   _direction: {fileID: 8007025895254328049}
+  _throw: 0
 --- !u!114 &5281744009920483759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -790,7 +791,7 @@ MonoBehaviour:
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
   _rigidbody: {fileID: 5903972171910146490}
-  _kinematicWhileSelected: 1
+  _kinematicWhileSelected: 0
   _throwWhenUnselected: 1
 --- !u!114 &7908542260200144664
 MonoBehaviour:
