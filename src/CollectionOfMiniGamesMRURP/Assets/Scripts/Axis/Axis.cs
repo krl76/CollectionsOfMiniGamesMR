@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Axis : MonoBehaviour
 {
@@ -14,8 +15,16 @@ public class Axis : MonoBehaviour
         if (other.CompareTag("Hands") && FindObjectOfType<ActivateAxisMode>()._isRockLeft)
         {
             _offsetY = _offsetObject.position.y - _mainObject.position.y;
-            _target = new Vector3(other.transform.position.x, other.transform.position.y - _offsetY,
-                other.transform.position.z);
+            if (SceneManager.GetActiveScene().name == "Bowling")
+            {
+                _target = new Vector3(-other.transform.position.x, other.transform.position.y - _offsetY,
+                    -other.transform.position.z);
+            }
+            else
+            {
+                _target = new Vector3(other.transform.position.x, other.transform.position.y - _offsetY,
+                    other.transform.position.z);
+            }
             
             _mainObject.position = Vector3.Lerp(_mainObject.position, _target, _smoothSpeed);
         }

@@ -14,15 +14,22 @@ public class BowlingManager : MonoBehaviour
     public int score;
 
     [Header("Pins")] 
-    [SerializeField] private List<Transform> _transformsPins;
+    [SerializeField] private List<GameObject> _objectPins;
 
-    private List<Transform> _baseTransformsPins;
+    private Vector3[] _baseVector3Pins;
+    private Quaternion[] _baseRotPins;
 
-    private void Awake()
+    private void Start()
     {
-        foreach (var pin in _transformsPins)
+        _baseVector3Pins = new Vector3[_objectPins.Count];
+        _baseRotPins = new Quaternion[_objectPins.Count];
+        
+        int i = 0;
+        foreach (var pin in _objectPins)
         {
-            _baseTransformsPins.Add(pin);
+            _baseVector3Pins[i] = pin.transform.position;
+            _baseRotPins[i] = pin.transform.rotation;
+            i++;
         }
     }
 
@@ -40,7 +47,9 @@ public class BowlingManager : MonoBehaviour
         if (score == 10)
         {
             _score1.text = "STRIKE!";
+            _score1.gameObject.SetActive(true);
             _score2.text = score.ToString();
+            _score2.gameObject.SetActive(true);
             _score3.text = (Int32.Parse(_score3.text) + score).ToString();
             memoryScore = 0;
             score = 0;
@@ -49,7 +58,9 @@ public class BowlingManager : MonoBehaviour
         else if (memoryScore + score == 10)
         {
             _score1.text = "SPARE!";
+            _score1.gameObject.SetActive(true);
             _score2.text = score.ToString();
+            _score2.gameObject.SetActive(true);
             _score3.text = (Int32.Parse(_score3.text) + score).ToString();
             memoryScore = 0;
             score = 0;
@@ -59,6 +70,7 @@ public class BowlingManager : MonoBehaviour
         {
             _score1.text = "";
             _score2.text = score.ToString();
+            _score2.gameObject.SetActive(true);
             _score3.text = (Int32.Parse(_score3.text) + score).ToString();
             memoryScore = score;
             score = 0;
@@ -68,11 +80,11 @@ public class BowlingManager : MonoBehaviour
 
     private void RestorePins()
     {
-        for (int i = 0; i < _transformsPins.Count; i++)
+        for (int i = 0; i < _objectPins.Count; i++)
         {
-            _transformsPins[i].transform.position = _baseTransformsPins[i].transform.position;
-            _transformsPins[i].transform.rotation = _baseTransformsPins[i].transform.rotation;
-            _transformsPins[i].gameObject.SetActive(true);
+            _objectPins[i].transform.position = _baseVector3Pins[i];
+            _objectPins[i].transform.rotation = _baseRotPins[i];
+            _objectPins[i].SetActive(true);
         }
     }
 
@@ -80,6 +92,12 @@ public class BowlingManager : MonoBehaviour
     {
         _score1.text = _score2.text = _score3.text = "0";
         RestorePins();
-        FindObjectOfType<BowlingBall>().RestoreBall();
+        FindObjectOfType<BowlingBall>().RestoreBall(true);
+    }
+    
+    public void NewAttemp()
+    {
+        _score1.gameObject.SetActive(false);
+        _score2.gameObject.SetActive(false);
     }
 }

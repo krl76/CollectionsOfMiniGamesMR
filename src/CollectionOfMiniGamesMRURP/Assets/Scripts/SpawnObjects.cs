@@ -21,6 +21,10 @@ public class SpawnObjects : MonoBehaviour
             {
                 Instantiate(_prefab, new Vector3(_pointer.transform.position.x, _pointer.transform.position.y + 1f, _pointer.transform.position.z), _prefab.transform.rotation);
             }
+            else if (SceneManager.GetActiveScene().name == "Bowling")
+            {
+                Instantiate(_prefab, new Vector3(_pointer.transform.position.x, _pointer.transform.position.y + 0.75f, _pointer.transform.position.z), Quaternion.identity);
+            }
             else
             {
                 Instantiate(_prefab, _pointer.transform.position, Quaternion.identity);

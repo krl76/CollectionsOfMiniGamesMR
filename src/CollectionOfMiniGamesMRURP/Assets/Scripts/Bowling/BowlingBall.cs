@@ -1,30 +1,28 @@
+using System;
 using Oculus.Interaction;
 using Oculus.Interaction.HandGrab;
 using UnityEngine;
 
 public class BowlingBall : MonoBehaviour
 {
-    [SerializeField] private float _smoothSpeed;
-    
+    [SerializeField] private Transform _spawnBall;
+    [SerializeField] private float _multiplyForce = 10f;
+
+    private BowlingManager _bowlingManager;
     private HandGrabInteractable grabInteractable;
     private Rigidbody _rb;
-
-    private Vector3 _basePosition;
+    
     private Vector3 _target;
     private bool _select;
 
     private float _force;
 
-    private void Awake()
-    {
-        _basePosition = transform.position;
-    }
-
     private void Start()
     {
         grabInteractable = GetComponent<HandGrabInteractable>();
         _rb = GetComponent<Rigidbody>();
-        
+        _bowlingManager = GetComponentInParent<BowlingManager>();
+
         if (grabInteractable != null)
         {
             grabInteractable.WhenStateChanged += OnStateChanged;
@@ -37,6 +35,11 @@ public class BowlingBall : MonoBehaviour
         {
             _select = true;
         }
+        else if (args.PreviousState == InteractableState.Select)
+        {
+            _select = false;
+            GoBall();
+        }
         else
         {
             _select = false;
@@ -44,32 +47,35 @@ public class BowlingBall : MonoBehaviour
         
     }
 
-    private void OnTriggerStay(Collider other)
+    private void FixedUpdate()
     {
-        if (other.CompareTag("Hands") && _select)
+        if (_select)
         {
-            if (Vector3.Distance(_basePosition, transform.position) < 2f)
+            if (Vector3.Distance(_spawnBall.position, transform.position) < 0.35f)
             {
-                _target = new Vector3(other.transform.position.x, other.transform.position.y,
-                    other.transform.position.z);
-
-                _force = Vector3.Distance(_basePosition, transform.position);
-            
-                transform.position = Vector3.Lerp(transform.position, _target, _smoothSpeed);
+                _force = Vector3.Distance(_spawnBall.position, transform.position) * _multiplyForce;
             }
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void GoBall()
     {
-        _rb.AddForce(transform.right * _force, ForceMode.Impulse);
+        _rb.AddForce(_spawnBall.transform.right * _force, ForceMode.Impulse);
         
         Invoke(nameof(RestoreBall), 5f);
     }
 
-    public void RestoreBall()
+    public void RestoreBall(bool when)
     {
-        transform.position = _basePosition;
+        if (when)
+        {
+            transform.position = _spawnBall.position;
+        }
+        else
+        {
+            _bowlingManager.NewAttemp();
+            transform.position = _spawnBall.position;
+        }
     }
 
     private void OnDestroy()
