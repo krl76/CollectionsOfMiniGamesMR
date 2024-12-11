@@ -15,11 +15,11 @@ public class BowlingPins : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("BowBall"))
+        if (other.gameObject.CompareTag("BowBall") || other.gameObject.CompareTag("BowPing"))
         {
             _bowlingManager.score += 1;
             
-            Invoke(nameof(DisablePin), 5f);
+            Invoke(nameof(DisablePin), 3f);
         }
     }
 

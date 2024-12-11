@@ -51,7 +51,7 @@ public class BowlingBall : MonoBehaviour
     {
         if (_select)
         {
-            if (Vector3.Distance(_spawnBall.position, transform.position) < 0.35f)
+            if (Vector3.Distance(_spawnBall.position, transform.position) < 0.4f)
             {
                 _force = Vector3.Distance(_spawnBall.position, transform.position) * _multiplyForce;
             }
@@ -60,21 +60,28 @@ public class BowlingBall : MonoBehaviour
 
     private void GoBall()
     {
-        _rb.AddForce(_spawnBall.transform.right * _force, ForceMode.Impulse);
+        _rb.AddForce(transform.right * _force, ForceMode.Impulse);
         
-        Invoke(nameof(RestoreBall), 5f);
+        Invoke(nameof(InvokeRestoreBall), 5f);
     }
 
+    private void InvokeRestoreBall()
+    {
+        RestoreBall(false);
+    }
+    
     public void RestoreBall(bool when)
     {
         if (when)
         {
             transform.position = _spawnBall.position;
+            transform.rotation = _spawnBall.rotation;
         }
         else
         {
             _bowlingManager.NewAttemp();
             transform.position = _spawnBall.position;
+            transform.rotation = _spawnBall.rotation;
         }
     }
 

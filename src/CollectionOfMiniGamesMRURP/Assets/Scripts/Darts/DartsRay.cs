@@ -11,7 +11,7 @@ public class DartsRay : MonoBehaviour
     private float _angle;
     private float _speed;
 
-    private void Start()
+    private void OnEnable()
     {
         _speed = _speedRay;
     }
@@ -29,6 +29,7 @@ public class DartsRay : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
+            Debug.LogError(hit.collider.name);
             if (hit.collider.gameObject.CompareTag("Arrow") && FindObjectOfType<DartsManager>()._isPing)
             {
                 _speed = 0f;

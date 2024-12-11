@@ -71,10 +71,12 @@ public class DartsManager : MonoBehaviour
             else if (distance >= 0.14f && distance <= 0.157f)
             {
                 x3 = true;
+                _isPing = true;
             }
             else if (distance >= 0.232f && distance <= 0.247f)
             {
                 x2 = true;
+                _isPing = true;
             }
             else if (distance >= 0.245f)
             {
@@ -84,7 +86,6 @@ public class DartsManager : MonoBehaviour
             {
                 _isPing = true;
             }
-            
             
         }
     }

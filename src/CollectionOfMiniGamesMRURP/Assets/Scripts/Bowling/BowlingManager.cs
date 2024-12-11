@@ -16,22 +16,7 @@ public class BowlingManager : MonoBehaviour
     [Header("Pins")] 
     [SerializeField] private List<GameObject> _objectPins;
 
-    private Vector3[] _baseVector3Pins;
-    private Quaternion[] _baseRotPins;
-
-    private void Start()
-    {
-        _baseVector3Pins = new Vector3[_objectPins.Count];
-        _baseRotPins = new Quaternion[_objectPins.Count];
-        
-        int i = 0;
-        foreach (var pin in _objectPins)
-        {
-            _baseVector3Pins[i] = pin.transform.position;
-            _baseRotPins[i] = pin.transform.rotation;
-            i++;
-        }
-    }
+    [SerializeField] private Transform[] _baseTransformPins;
 
     private int memoryScore;
     private string _baseText = "Overall score: ";
@@ -82,8 +67,8 @@ public class BowlingManager : MonoBehaviour
     {
         for (int i = 0; i < _objectPins.Count; i++)
         {
-            _objectPins[i].transform.position = _baseVector3Pins[i];
-            _objectPins[i].transform.rotation = _baseRotPins[i];
+            _objectPins[i].transform.position = _baseTransformPins[i].position;
+            _objectPins[i].transform.rotation = _baseTransformPins[i].rotation;
             _objectPins[i].SetActive(true);
         }
     }
