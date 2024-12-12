@@ -6,13 +6,17 @@ public class DartsRay : MonoBehaviour
 {
     [SerializeField] private float _speedRay;
     [SerializeField] private List<DartsRay> _anotherRays;
+    [SerializeField] private AudioClip _getRay;
     
     private Ray ray;
     private float _angle;
     private float _speed;
 
+    private AudioSource _audioSource;
+
     private void OnEnable()
     {
+        _audioSource = GetComponent<AudioSource>();
         _speed = _speedRay;
     }
 
@@ -32,6 +36,7 @@ public class DartsRay : MonoBehaviour
             Debug.LogError(hit.collider.name);
             if (hit.collider.gameObject.CompareTag("Arrow") && FindObjectOfType<DartsManager>()._isPing)
             {
+                _audioSource.PlayOneShot(_getRay);
                 _speed = 0f;
                 _angle = transform.localEulerAngles.z;
                 

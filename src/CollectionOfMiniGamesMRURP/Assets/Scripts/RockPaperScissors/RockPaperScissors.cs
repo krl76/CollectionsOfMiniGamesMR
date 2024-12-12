@@ -18,6 +18,13 @@ public class RockPaperScissors : MonoBehaviour
     [SerializeField] private TextMeshPro _result;
     [SerializeField] private TextMeshPro _choice;
 
+    [Header("Audio")] 
+    [SerializeField] private AudioClip _win;
+    [SerializeField] private AudioClip _draw;
+    [SerializeField] private AudioClip _lose;
+    [SerializeField] private AudioClip _click;
+
+    [Header("Other Sets")]
     public bool _animationEnd;
     public bool _isStart;
     private GameObject _aiPickObject;
@@ -29,11 +36,19 @@ public class RockPaperScissors : MonoBehaviour
 
     private PlayerPick _playerPickScript;
 
+    private AudioSource _audioSource;
+
     private void Awake()
     {
+        _audioSource = GetComponent<AudioSource>();
         _playerPickScript = FindAnyObjectByType<PlayerPick>().GetComponent<PlayerPick>();
         _animationEnd = false;
         _isStart = false;
+    }
+
+    public void Click()
+    {
+        _audioSource.PlayOneShot(_click);
     }
 
     public void StartGame()
@@ -68,17 +83,20 @@ public class RockPaperScissors : MonoBehaviour
             _result.gameObject.SetActive(true);
             if (_aiPick == _playerPick)
             {
+                _audioSource.PlayOneShot(_draw);
                 _result.text = "Draw";
             }
             else if (_aiPick == "Paper")
             {
                 if (_playerPick == "Rock")
                 {
+                    _audioSource.PlayOneShot(_lose);
                     _result.text = "AI Win";
                     _score.text = $"Score {++_aiScore}:{_playerScore}";
                 }
                 else if (_playerPick == "Scissors")
                 {
+                    _audioSource.PlayOneShot(_win);
                     _result.text = "You Win";
                     _score.text = $"Score {_aiScore}:{++_playerScore}";
                 }
@@ -87,11 +105,13 @@ public class RockPaperScissors : MonoBehaviour
             {
                 if (_playerPick == "Scissors")
                 {
+                    _audioSource.PlayOneShot(_lose);
                     _result.text = "AI Win";
                     _score.text = $"Score {++_aiScore}:{_playerScore}";
                 }
                 else if (_playerPick == "Paper")
                 {
+                    _audioSource.PlayOneShot(_win);
                     _result.text = "You Win";
                     _score.text = $"Score {_aiScore}:{++_playerScore}";
                 }
@@ -100,11 +120,13 @@ public class RockPaperScissors : MonoBehaviour
             {
                 if (_playerPick == "Paper")
                 {
+                    _audioSource.PlayOneShot(_lose);
                     _result.text = "AI Win";
                     _score.text = $"Score {++_aiScore}:{_playerScore}";
                 }
                 else if (_playerPick == "Rock")
                 {
+                    _audioSource.PlayOneShot(_win);
                     _result.text = "You Win";
                     _score.text = $"Score {_aiScore}:{++_playerScore}";
                 }

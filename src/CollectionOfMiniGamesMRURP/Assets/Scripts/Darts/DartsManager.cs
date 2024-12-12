@@ -5,9 +5,16 @@ using UnityEngine;
 
 public class DartsManager : MonoBehaviour
 {
+    [Header("Darts")]
     [SerializeField] private TextMeshPro _scoreTable;
     [SerializeField] private Transform _dartboardCenter;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip _ping;
+    [SerializeField] private AudioClip _getRay;
+    [SerializeField] private AudioClip _win;
+    
+    [Header("Other sets")]
     public List<DartsRay> _dartsRays;
     
     public int _score;
@@ -19,12 +26,21 @@ public class DartsManager : MonoBehaviour
     private bool x2;
     private bool x3;
 
+    private AudioSource _audioSource;
+
+    private void OnEnable()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
+
     private void OnCollisionEnter(Collision other)
     {
         Debug.Log("Enter");
         
         if (other.gameObject.CompareTag("Arrow"))
         {
+            _audioSource.PlayOneShot(_ping);
+            
             _arrow = other.gameObject.GetComponent<Arrow>();
             OffArrowGravity();
             
@@ -44,6 +60,7 @@ public class DartsManager : MonoBehaviour
     
             if (distance <= 0.016f)
             {
+                _audioSource.PlayOneShot(_getRay);
                 _score += 50;
                 
                 if (Int32.Parse(_scoreTable.text) - _score > 0)
@@ -57,6 +74,7 @@ public class DartsManager : MonoBehaviour
             }
             else if (distance <= 0.0297f)
             {
+                _audioSource.PlayOneShot(_getRay);
                 _score += 25;
                 
                 if (Int32.Parse(_scoreTable.text) - _score > 0)
@@ -103,7 +121,7 @@ public class DartsManager : MonoBehaviour
             if (x3) _score += 1 * 3;
             else _score += 1; 
             
-            if (Int32.Parse(_scoreTable.text) - _score > 0)
+            if (Int32.Parse(_scoreTable.text) - _score >= 0)
             {
                 _scoreTable.text = (Int32.Parse(_scoreTable.text) - _score).ToString();
             }
@@ -115,7 +133,7 @@ public class DartsManager : MonoBehaviour
             if (x3) _score += 18 * 3;
             else _score += 18;
                 
-            if (Int32.Parse(_scoreTable.text) - _score > 0)
+            if (Int32.Parse(_scoreTable.text) - _score >= 0)
             {
                 _scoreTable.text = (Int32.Parse(_scoreTable.text) - _score).ToString();
             }
@@ -127,7 +145,7 @@ public class DartsManager : MonoBehaviour
             if (x3) _score += 4 * 3;
             else _score += 4;
                 
-            if (Int32.Parse(_scoreTable.text) - _score > 0)
+            if (Int32.Parse(_scoreTable.text) - _score >= 0)
             {
                 _scoreTable.text = (Int32.Parse(_scoreTable.text) - _score).ToString();
             }
@@ -139,7 +157,7 @@ public class DartsManager : MonoBehaviour
             if (x3) _score += 13 * 3;
             else _score += 13;
                 
-            if (Int32.Parse(_scoreTable.text) - _score > 0)
+            if (Int32.Parse(_scoreTable.text) - _score >= 0)
             {
                 _scoreTable.text = (Int32.Parse(_scoreTable.text) - _score).ToString();
             }
@@ -151,7 +169,7 @@ public class DartsManager : MonoBehaviour
             if (x3) _score += 6 * 3;
             else _score += 6;
                 
-            if (Int32.Parse(_scoreTable.text) - _score > 0)
+            if (Int32.Parse(_scoreTable.text) - _score >= 0)
             {
                 _scoreTable.text = (Int32.Parse(_scoreTable.text) - _score).ToString();
             }
@@ -163,7 +181,7 @@ public class DartsManager : MonoBehaviour
             if (x3) _score += 10 * 3;
             else _score += 10;
                 
-            if (Int32.Parse(_scoreTable.text) - _score > 0)
+            if (Int32.Parse(_scoreTable.text) - _score >= 0)
             {
                 _scoreTable.text = (Int32.Parse(_scoreTable.text) - _score).ToString();
             }
@@ -175,7 +193,7 @@ public class DartsManager : MonoBehaviour
             if (x3) _score += 15 * 3;
             else _score += 15;
                 
-            if (Int32.Parse(_scoreTable.text) - _score > 0)
+            if (Int32.Parse(_scoreTable.text) - _score >= 0)
             {
                 _scoreTable.text = (Int32.Parse(_scoreTable.text) - _score).ToString();
             }
@@ -187,7 +205,7 @@ public class DartsManager : MonoBehaviour
             if (x3) _score += 2 * 3;
             else _score += 2;
                 
-            if (Int32.Parse(_scoreTable.text) - _score > 0)
+            if (Int32.Parse(_scoreTable.text) - _score >= 0)
             {
                 _scoreTable.text = (Int32.Parse(_scoreTable.text) - _score).ToString();
             }
@@ -199,7 +217,7 @@ public class DartsManager : MonoBehaviour
             if (x3) _score += 17 * 3;
             else _score += 17;
                 
-            if (Int32.Parse(_scoreTable.text) - _score > 0)
+            if (Int32.Parse(_scoreTable.text) - _score >= 0)
             {
                 _scoreTable.text = (Int32.Parse(_scoreTable.text) - _score).ToString();
             }
@@ -211,7 +229,7 @@ public class DartsManager : MonoBehaviour
             if (x3) _score += 3 * 3;
             else _score += 3;
                 
-            if (Int32.Parse(_scoreTable.text) - _score > 0)
+            if (Int32.Parse(_scoreTable.text) - _score >= 0)
             {
                 _scoreTable.text = (Int32.Parse(_scoreTable.text) - _score).ToString();
             }
@@ -223,7 +241,7 @@ public class DartsManager : MonoBehaviour
             if (x3) _score += 19 * 3;
             else _score += 19;
                 
-            if (Int32.Parse(_scoreTable.text) - _score > 0)
+            if (Int32.Parse(_scoreTable.text) - _score >= 0)
             {
                 _scoreTable.text = (Int32.Parse(_scoreTable.text) - _score).ToString();
             }
@@ -235,7 +253,7 @@ public class DartsManager : MonoBehaviour
             if (x3) _score += 7 * 3;
             else _score += 7;
                 
-            if (Int32.Parse(_scoreTable.text) - _score > 0)
+            if (Int32.Parse(_scoreTable.text) - _score >= 0)
             {
                 _scoreTable.text = (Int32.Parse(_scoreTable.text) - _score).ToString();
             }
@@ -247,7 +265,7 @@ public class DartsManager : MonoBehaviour
             if (x3) _score += 16 * 3;
             else _score += 16;
                 
-            if (Int32.Parse(_scoreTable.text) - _score > 0)
+            if (Int32.Parse(_scoreTable.text) - _score >= 0)
             {
                 _scoreTable.text = (Int32.Parse(_scoreTable.text) - _score).ToString();
             }
@@ -259,7 +277,7 @@ public class DartsManager : MonoBehaviour
             if (x3) _score += 8 * 3;
             else _score += 8;
                 
-            if (Int32.Parse(_scoreTable.text) - _score > 0)
+            if (Int32.Parse(_scoreTable.text) - _score >= 0)
             {
                 _scoreTable.text = (Int32.Parse(_scoreTable.text) - _score).ToString();
             }
@@ -271,7 +289,7 @@ public class DartsManager : MonoBehaviour
             if (x3) _score += 11 * 3;
             else _score += 11;
                 
-            if (Int32.Parse(_scoreTable.text) - _score > 0)
+            if (Int32.Parse(_scoreTable.text) - _score >= 0)
             {
                 _scoreTable.text = (Int32.Parse(_scoreTable.text) - _score).ToString();
             }
@@ -283,7 +301,7 @@ public class DartsManager : MonoBehaviour
             if (x3) _score += 14 * 3;
             else _score += 14;
                 
-            if (Int32.Parse(_scoreTable.text) - _score > 0)
+            if (Int32.Parse(_scoreTable.text) - _score >= 0)
             {
                 _scoreTable.text = (Int32.Parse(_scoreTable.text) - _score).ToString();
             }
@@ -295,7 +313,7 @@ public class DartsManager : MonoBehaviour
             if (x3) _score += 9 * 3;
             else _score += 9;
                 
-            if (Int32.Parse(_scoreTable.text) - _score > 0)
+            if (Int32.Parse(_scoreTable.text) - _score >= 0)
             {
                 _scoreTable.text = (Int32.Parse(_scoreTable.text) - _score).ToString();
             }
@@ -307,7 +325,7 @@ public class DartsManager : MonoBehaviour
             if (x3) _score += 12 * 3;
             else _score += 12;
                 
-            if (Int32.Parse(_scoreTable.text) - _score > 0)
+            if (Int32.Parse(_scoreTable.text) - _score >= 0)
             {
                 _scoreTable.text = (Int32.Parse(_scoreTable.text) - _score).ToString();
             }
@@ -319,7 +337,7 @@ public class DartsManager : MonoBehaviour
             if (x3) _score += 5 * 3;
             else _score += 5;
                 
-            if (Int32.Parse(_scoreTable.text) - _score > 0)
+            if (Int32.Parse(_scoreTable.text) - _score >= 0)
             {
                 _scoreTable.text = (Int32.Parse(_scoreTable.text) - _score).ToString();
             }
@@ -331,11 +349,16 @@ public class DartsManager : MonoBehaviour
             if (x3) _score += 20 * 3;
             else _score += 20;
                 
-            if (Int32.Parse(_scoreTable.text) - _score > 0)
+            if (Int32.Parse(_scoreTable.text) - _score >= 0)
             {
                 _scoreTable.text = (Int32.Parse(_scoreTable.text) - _score).ToString();
             }
             Debug.Log("Попадание в сектор 20");
+        }
+
+        if (Int32.Parse(_scoreTable.text) == 0)
+        {
+            FindAnyObjectByType<Win>().ActivateMenu();
         }
         
         _drotik.TextOnDrotik(_score);

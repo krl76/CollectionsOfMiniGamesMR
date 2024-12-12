@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class BowlingPins : MonoBehaviour
 {
+    [SerializeField] private AudioClip _fall;
 
+    private AudioSource _audioSource;
     private BowlingManager _bowlingManager;
     
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
         _bowlingManager = FindObjectOfType<BowlingManager>();
     }
 
@@ -17,6 +20,7 @@ public class BowlingPins : MonoBehaviour
     {
         if (other.gameObject.CompareTag("BowBall") || other.gameObject.CompareTag("BowPing"))
         {
+            _audioSource.PlayOneShot(_fall);
             _bowlingManager.score += 1;
             
             Invoke(nameof(DisablePin), 3f);

@@ -8,7 +8,10 @@ using UnityEngine;
 
 public class PutInBox : MonoBehaviour
 {
-
+   [Header("Audio")] 
+   [SerializeField] private AudioClip _bottleInBox;
+   
+   [Header("Settings box")]
    [SerializeField] private List<Transform> _spawnPoints;
    [SerializeField] private TextMeshPro _score;
    [SerializeField] private TextMeshPro _timer;
@@ -26,11 +29,15 @@ public class PutInBox : MonoBehaviour
 
    private Lost _lost;
 
+   private AudioSource _audioSource;
+
    private void Awake()
    {
       temp_id = 0;
       
       _amount_bottles = FindObjectOfType<BottlesSpawn>().ActivateSpawn();
+
+      _audioSource = GetComponent<AudioSource>();
 
       if (_amount_bottles <= 5)
       {
@@ -64,7 +71,9 @@ public class PutInBox : MonoBehaviour
       if (other.CompareTag("Bottle") && temp_id != other.GetInstanceID())
       {
          temp_id = other.GetInstanceID();
-
+         
+         _audioSource.PlayOneShot(_bottleInBox);
+         
          other.GetComponent<Grabbable>().enabled = false;
          other.GetComponent<HandGrabInteractable>().enabled = false;
          other.GetComponent<GrabInteractable>().enabled = false;

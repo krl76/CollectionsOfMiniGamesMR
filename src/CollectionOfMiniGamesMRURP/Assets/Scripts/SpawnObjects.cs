@@ -10,8 +10,16 @@ public class SpawnObjects : MonoBehaviour
 {
     [SerializeField] private GameObject _prefab;
     [SerializeField] private GameObject _pointer;
+    [SerializeField] private AudioClip _spawn;
     
     public bool _isSpawn;
+
+    private AudioSource _audioSource;
+
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     public void SpawnObject()
     {
@@ -30,6 +38,7 @@ public class SpawnObjects : MonoBehaviour
                 Instantiate(_prefab, _pointer.transform.position, Quaternion.identity);
             }
             
+            _audioSource.PlayOneShot(_spawn);
             _pointer.SetActive(false);
             _isSpawn = true;
         }

@@ -15,12 +15,22 @@ public class BowlingManager : MonoBehaviour
 
     [Header("Pins")] 
     [SerializeField] private List<GameObject> _objectPins;
-
     [SerializeField] private Transform[] _baseTransformPins;
+
+    [Header("Audio")] 
+    [SerializeField] private AudioClip _strike;
+    [SerializeField] private AudioClip _spare;
+    [SerializeField] private AudioClip _click;
 
     private int memoryScore;
     private string _baseText = "Overall score: ";
     private int attemp;
+    private AudioSource _audioSource;
+
+    private void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     private void FixedUpdate()
     {
@@ -31,6 +41,8 @@ public class BowlingManager : MonoBehaviour
         
         if (score == 10)
         {
+            _audioSource.PlayOneShot(_strike);
+            
             _score1.text = "STRIKE!";
             _score1.gameObject.SetActive(true);
             _score2.text = score.ToString();
@@ -42,6 +54,8 @@ public class BowlingManager : MonoBehaviour
         }
         else if (memoryScore + score == 10)
         {
+            _audioSource.PlayOneShot(_spare);
+            
             _score1.text = "SPARE!";
             _score1.gameObject.SetActive(true);
             _score2.text = score.ToString();
@@ -75,6 +89,8 @@ public class BowlingManager : MonoBehaviour
 
     public void RestartGame()
     {
+        _audioSource.PlayOneShot(_click);
+        
         _score1.text = _score2.text = _score3.text = "0";
         RestorePins();
         FindObjectOfType<BowlingBall>().RestoreBall(true);
