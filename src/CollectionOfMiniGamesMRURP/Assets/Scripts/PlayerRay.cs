@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerRay : MonoBehaviour
 {
@@ -25,7 +24,7 @@ public class PlayerRay : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.gameObject.CompareTag("Floor"))
+                if (hit.collider.gameObject.CompareTag("Floor") && !_off)
                 {
                     _pointer.SetActive(true);
                     _pointer.transform.position = hit.point;

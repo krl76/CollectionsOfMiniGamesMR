@@ -18,12 +18,24 @@ public class BowlingPins : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("BowBall") || other.gameObject.CompareTag("BowPing"))
+        if (other.gameObject.CompareTag("BowPing"))
         {
+            if (!other.gameObject.GetComponent<CheckPin>()._check)
+            {
+                other.gameObject.GetComponent<CheckPin>()._check = true;
+                _audioSource.PlayOneShot(_fall);
+                _bowlingManager.score += 1;
+            
+                Invoke(nameof(DisablePin), 2f);
+            }
+        }
+        if (other.gameObject.CompareTag("BowBall"))
+        {
+            GetComponent<CheckPin>()._check = true;
             _audioSource.PlayOneShot(_fall);
             _bowlingManager.score += 1;
             
-            Invoke(nameof(DisablePin), 3f);
+            Invoke(nameof(DisablePin), 2f);
         }
     }
 

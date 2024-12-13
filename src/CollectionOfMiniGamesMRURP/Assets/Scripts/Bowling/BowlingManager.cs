@@ -23,7 +23,6 @@ public class BowlingManager : MonoBehaviour
     [SerializeField] private AudioClip _click;
 
     private int memoryScore;
-    private string _baseText = "Overall score: ";
     private int attemp;
     private AudioSource _audioSource;
 
@@ -32,12 +31,8 @@ public class BowlingManager : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    private void FixedUpdate()
+    public void Game()
     {
-        if (attemp == 2)
-        {
-            RestorePins();
-        }
         
         if (score == 10)
         {
@@ -51,6 +46,8 @@ public class BowlingManager : MonoBehaviour
             memoryScore = 0;
             score = 0;
             attemp = 0;
+            
+            Invoke(nameof(RestorePins), 3f);
         }
         else if (memoryScore + score == 10)
         {
@@ -64,6 +61,8 @@ public class BowlingManager : MonoBehaviour
             memoryScore = 0;
             score = 0;
             attemp = 0;
+            
+            Invoke(nameof(RestorePins), 3f);
         }
         else
         {
@@ -73,7 +72,14 @@ public class BowlingManager : MonoBehaviour
             _score3.text = (Int32.Parse(_score3.text) + score).ToString();
             memoryScore = score;
             score = 0;
-            attemp += 1;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (attemp == 3)
+        {
+            Invoke(nameof(RestorePins), 2f);
         }
     }
 
@@ -98,6 +104,7 @@ public class BowlingManager : MonoBehaviour
     
     public void NewAttemp()
     {
+        attemp += 1;
         _score1.gameObject.SetActive(false);
         _score2.gameObject.SetActive(false);
     }

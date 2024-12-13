@@ -98,6 +98,7 @@ public class DartsManager : MonoBehaviour
             }
             else if (distance >= 0.245f)
             {
+                _drotik.TextOnDrotik("Не попал");
                 return;
             }
             else

@@ -79,10 +79,17 @@ public class BowlingBall : MonoBehaviour
         }
         else
         {
-            _bowlingManager.NewAttemp();
-            transform.position = _spawnBall.position;
-            transform.rotation = _spawnBall.rotation;
+            _bowlingManager.Game();
+            
+            Invoke(nameof(RestoreBallNewAttemp), 2f);
         }
+    }
+
+    private void RestoreBallNewAttemp()
+    {
+        _bowlingManager.NewAttemp();
+        transform.position = _spawnBall.position;
+        transform.rotation = _spawnBall.rotation;
     }
 
     private void OnDestroy()

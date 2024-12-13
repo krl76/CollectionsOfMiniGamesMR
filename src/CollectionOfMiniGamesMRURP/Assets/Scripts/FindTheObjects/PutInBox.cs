@@ -83,7 +83,7 @@ public class PutInBox : MonoBehaviour
          other.transform.localPosition = _spawnPoints[_countInBox++].transform.localPosition;
          //other.transform.localEulerAngles = new Vector3(90, 0, 0);
          
-         _score.text = $"{_countInBox}/{_spawnPoints.Count}";
+         _score.text = $"{_countInBox}/{_amount_bottles}";
          
          if (_countInBox == _amount_bottles)
          {

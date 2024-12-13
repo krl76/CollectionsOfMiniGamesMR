@@ -14,4 +14,10 @@ public class Drotik : MonoBehaviour
         _score.text = score.ToString();
     }
     
+    public void TextOnDrotik(string type)
+    {
+        _score.gameObject.SetActive(true);
+        _score.text = type;
+    }
+    
 }

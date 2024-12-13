@@ -17,8 +17,8 @@ public class Axis : MonoBehaviour
             _offsetY = _offsetObject.position.y - _mainObject.position.y;
             if (SceneManager.GetActiveScene().name == "Bowling")
             {
-                _target = new Vector3(other.transform.position.x, other.transform.position.y - _offsetY,
-                    -other.transform.position.z);
+                _target = new Vector3(-other.transform.position.x, other.transform.position.y - _offsetY,
+                    other.transform.position.z);
             }
             else
             {

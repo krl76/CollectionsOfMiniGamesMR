@@ -13,12 +13,15 @@ public class SpawnArrow : MonoBehaviour
     [Header("Other")]
     [SerializeField] private GameObject _drotik;
     [SerializeField] private int _dartsRaysCount;
+    [SerializeField] private AudioClip _spawnAudioClip;
     
     private List<DartsRay> _dartsRays;
 
     private GameObject _spawned;
 
     private SpawnObjects _spawnObjects;
+
+    private AudioSource _audioSource;
     
     private void Start()
     {
@@ -40,6 +43,7 @@ public class SpawnArrow : MonoBehaviour
             {
                 rays.enabled = true;
             }
+            _audioSource.PlayOneShot(_spawnAudioClip);
             _spawned = Instantiate(_drotik, FindObjectOfType<PlayerRay>().transform.position, quaternion.identity);
         }
     }
