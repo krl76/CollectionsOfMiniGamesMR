@@ -62,7 +62,7 @@ public class BowlingBall : MonoBehaviour
     {
         _rb.AddForce(transform.right * _force, ForceMode.Impulse);
         
-        Invoke(nameof(InvokeRestoreBall), 5f);
+        Invoke(nameof(InvokeRestoreBall), 3f);
     }
 
     private void InvokeRestoreBall()

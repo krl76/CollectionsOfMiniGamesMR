@@ -23,12 +23,14 @@ public class BowlingPins : MonoBehaviour
             if (!other.gameObject.GetComponent<CheckPin>()._check)
             {
                 other.gameObject.GetComponent<CheckPin>()._check = true;
+                GetComponent<CheckPin>()._check = true;
                 _audioSource.PlayOneShot(_fall);
                 _bowlingManager.score += 1;
             
                 Invoke(nameof(DisablePin), 2f);
             }
         }
+        
         if (other.gameObject.CompareTag("BowBall"))
         {
             GetComponent<CheckPin>()._check = true;

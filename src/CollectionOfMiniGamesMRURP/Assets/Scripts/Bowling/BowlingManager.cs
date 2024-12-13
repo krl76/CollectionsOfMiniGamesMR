@@ -10,6 +10,7 @@ public class BowlingManager : MonoBehaviour
     [SerializeField] private TextMeshPro _score1;
     [SerializeField] private TextMeshPro _score2;
     [SerializeField] private TextMeshPro _score3;
+    [SerializeField] private TextMeshPro _attempt;
     
     public int score;
 
@@ -80,7 +81,10 @@ public class BowlingManager : MonoBehaviour
         if (attemp == 3)
         {
             Invoke(nameof(RestorePins), 2f);
+            attemp = 0;
         }
+
+        _attempt.text = "Attempt: " + attemp;
     }
 
     private void RestorePins()
