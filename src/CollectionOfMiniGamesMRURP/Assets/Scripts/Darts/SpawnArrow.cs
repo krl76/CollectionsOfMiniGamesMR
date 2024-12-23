@@ -26,6 +26,7 @@ public class SpawnArrow : MonoBehaviour
     private void Start()
     {
         _spawnObjects = GetComponent<SpawnObjects>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void SpawnDrotik()
@@ -36,13 +37,14 @@ public class SpawnArrow : MonoBehaviour
             {
                 Destroy(_spawned);
                 _dartsRays = FindObjectOfType<DartsManager>()._dartsRays;
+
+                foreach (var rays in _dartsRays)
+                {
+                    rays.enabled = true;
+                }
             }
             catch{}
 
-            foreach (var rays in _dartsRays)
-            {
-                rays.enabled = true;
-            }
             _audioSource.PlayOneShot(_spawnAudioClip);
             _spawned = Instantiate(_drotik, FindObjectOfType<PlayerRay>().transform.position, quaternion.identity);
         }
