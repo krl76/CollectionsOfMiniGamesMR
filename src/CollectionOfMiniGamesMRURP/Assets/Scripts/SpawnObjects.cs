@@ -27,7 +27,7 @@ public class SpawnObjects : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().name == "Darts")
             {
-                Instantiate(_prefab, new Vector3(_pointer.transform.position.x, _pointer.transform.position.y + 1f, _pointer.transform.position.z), _prefab.transform.rotation);
+                Instantiate(_prefab, new Vector3(_pointer.transform.position.x, _pointer.transform.position.y + 1.4f, _pointer.transform.position.z), _prefab.transform.rotation);
             }
             else if (SceneManager.GetActiveScene().name == "Bowling")
             {

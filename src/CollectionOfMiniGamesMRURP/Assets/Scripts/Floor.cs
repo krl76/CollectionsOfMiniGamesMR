@@ -4,6 +4,6 @@ public class Floor : MonoBehaviour
 {
     private void Awake()
     {
-        transform.position = new Vector3(0, 0.03f,0 );
+        transform.position = new Vector3(0, 0.05f,0 );
     }
 }
